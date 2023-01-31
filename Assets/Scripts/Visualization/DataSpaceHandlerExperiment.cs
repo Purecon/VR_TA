@@ -230,6 +230,16 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
             rendererParent.material = tempMaterial;
             mergeChildren(cubeParent, tempObjects, filterParent);
+
+            foreach(GameObject childObject in tempObjects)
+            {
+                //Collider
+                BoxCollider boxCollider = childObject.AddComponent<BoxCollider>();
+                boxCollider.isTrigger = true;
+
+                childObject.GetComponent<MeshRenderer>().enabled = false;
+                //Debug.Log(childObject);
+            }
         }
 
         /*
@@ -254,7 +264,8 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             combine[i].mesh = objects[i].GetComponent<MeshFilter>().sharedMesh;
             combine[i].mesh.colors = objects[i].GetComponent<MeshFilter>().mesh.colors;
             combine[i].transform = objects[i].transform.localToWorldMatrix;
-            objects[i].SetActive(false);
+
+            //objects[i].SetActive(false);
         }
 
         target.mesh.CombineMeshes(combine);
