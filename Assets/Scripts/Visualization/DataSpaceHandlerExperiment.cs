@@ -166,7 +166,8 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         List<GameObject> tempObjectsAll = new List<GameObject>();
         foreach (GameObject individualObject in objects){
             //"realobject"
-            GameObject cube = new GameObject("Cube");
+            //GameObject cube = new GameObject("Cube");
+            GameObject cube = new GameObject(dataClasses[count]);
             cube.transform.parent = parent.transform;
 
             MeshFilter filter = cube.AddComponent<MeshFilter>();
