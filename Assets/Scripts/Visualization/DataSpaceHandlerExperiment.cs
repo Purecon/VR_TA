@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class DataSpaceHandlerExperiment : MonoBehaviour
 {
@@ -237,9 +238,12 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                 BoxCollider boxCollider = childObject.AddComponent<BoxCollider>();
                 boxCollider.isTrigger = true;
 
+                //Disabled child gameobject
                 childObject.GetComponent<MeshRenderer>().enabled = false;
-                //Debug.Log(childObject);
             }
+            //Parent 
+            XRSimpleInteractable simpleInteractable = cubeParent.AddComponent<XRSimpleInteractable>();
+            //simpleInteractable.colliders = cubeParent.GetComponentsInChildren<BoxCollider>();
         }
 
         /*
