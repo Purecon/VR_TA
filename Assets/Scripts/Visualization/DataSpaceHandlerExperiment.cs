@@ -211,6 +211,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             BuildingScript.BuildingData buildingData = new BuildingScript.BuildingData();
             buildingData.Name = dataClasses[count].ToString();
             buildingData.ID = count;
+            buildingData.Position = new Vector3(dataPositions[count].x * localScale.x, dataPositions[count].y * localScale.y, dataPositions[count].z * localScale.z);
             buildingScript.buildingData = buildingData;
 
             tempObjectsAll.Add(cube);
