@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class DataSpaceHandlerExperiment : MonoBehaviour
 {
     [Header("Prefab")]
     public GameObject dataObject;
+    public GameObject buildingPrefab;
 
     [Header("Lists")]
     public List<Vector3> dataPositions;
@@ -25,6 +28,9 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
     [Header("Size")]
     public Vector3 localScale = new Vector3(1.25f,1.25f,1.25f);
+
+    [Header("Event")]
+    public HoverEnterEvent eventForInteraction;
 
     [SerializeField]
     public Material dataMappedMaterial;
@@ -112,6 +118,12 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         createTiledCube(childCat1);
 
         gameObject.transform.localScale = localScale;
+
+        //Gameobject interaction
+        /*
+        XRSimpleInteractable simpleInteractable = gameObject.AddComponent<XRSimpleInteractable>();
+        simpleInteractable.hoverEntered = eventForInteraction;
+        */
     }
 
     //Create a cube with all objects of that type and subdivide if needed
@@ -167,7 +179,9 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         foreach (GameObject individualObject in objects){
             //"realobject"
             //GameObject cube = new GameObject("Cube");
-            GameObject cube = new GameObject(dataClasses[count]);
+            //GameObject cube = new GameObject(dataClasses[count].ToString());
+            GameObject cube = Instantiate(buildingPrefab);
+            cube.name = dataClasses[count].ToString();
             cube.transform.parent = parent.transform;
 
             MeshFilter filter = cube.AddComponent<MeshFilter>();
@@ -186,28 +200,24 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             cube.transform.localScale = new Vector3(1, 1, 1);
 
             //Collider
-            /*
             BoxCollider boxCollider = cube.AddComponent<BoxCollider>();
-            boxCollider.isTrigger = true;
-            */
+            BoxCollider boxColliderTrigger = cube.AddComponent<BoxCollider>();
+            boxColliderTrigger.isTrigger = true;
+            //Interactable
+            XRSimpleInteractable simpleInteractable = cube.AddComponent<XRSimpleInteractable>();
+
+            //Building script
+            BuildingScript buildingScript = cube.GetComponent<BuildingScript>();
+            BuildingScript.BuildingData buildingData = new BuildingScript.BuildingData();
+            buildingData.Name = dataClasses[count].ToString();
+            buildingData.ID = count;
+            buildingScript.buildingData = buildingData;
 
             tempObjectsAll.Add(cube);
             count++;
         }
-        //return cube;
-        //Merge game object again
-        /*
-        GameObject cubeParent = new GameObject("CubeParent");
-        cubeParent.transform.parent = parent.transform;
 
-        MeshFilter filterParent = cubeParent.AddComponent<MeshFilter>();
-        MeshRenderer rendererParent = cubeParent.AddComponent<MeshRenderer>();
-
-        rendererParent.material = dataMappedMaterial;
-        mergeChildren(cubeParent, tempObjectsAll, filterParent, true);
-        return cubeParent;
-        */
-
+        //For each unique color
         foreach(Color c in dataColorsUnique)
         {
             List<GameObject> tempObjects = new List<GameObject>();
@@ -235,16 +245,17 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
             foreach(GameObject childObject in tempObjects)
             {
-                //Collider
-                BoxCollider boxCollider = childObject.AddComponent<BoxCollider>();
-                boxCollider.isTrigger = true;
-
                 //Disabled child gameobject
                 childObject.GetComponent<MeshRenderer>().enabled = false;
+
+                //Child interaction event
+                //XRSimpleInteractable simpleInteractable = childObject.AddComponent<XRSimpleInteractable>();
+                //simpleInteractable.hoverEntered = eventForInteraction;
             }
-            //Parent 
-            XRSimpleInteractable simpleInteractable = cubeParent.AddComponent<XRSimpleInteractable>();
-            //simpleInteractable.colliders = cubeParent.GetComponentsInChildren<BoxCollider>();
+
+            //Parent interaction event
+            //XRSimpleInteractable simpleInteractable = cubeParent.AddComponent<XRSimpleInteractable>();
+            //simpleInteractable.hoverEntered = eventForInteraction;
         }
 
         /*
@@ -280,5 +291,10 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void TestScript()
+    {
+        Debug.Log("Hi");
     }
 }

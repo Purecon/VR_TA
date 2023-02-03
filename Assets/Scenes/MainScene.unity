@@ -918,7 +918,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children: []
   m_Father: {fileID: 488680367}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &425206896
 MonoBehaviour:
@@ -933,6 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataObject: {fileID: 6098537784280469318, guid: ffa343fbad6e3f14598c4d4aca66c0bc, type: 3}
+  buildingPrefab: {fileID: 5161369457340872906, guid: f55dea1094859e240a54b0e763cea344, type: 3}
   dataPositions: []
   dataPositionsC1: []
   dataPositionsC2: []
@@ -943,6 +944,21 @@ MonoBehaviour:
   dataColorsUnique: []
   data: {fileID: 4900000, guid: 882bad982c03b974fb87a8b46680dfd1, type: 3}
   localScale: {x: 1.5, y: 1.5, z: 1.5}
+  eventForInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 702138042}
+        m_TargetAssemblyTypeName: BuildingInteractionManager, Assembly-CSharp
+        m_MethodName: DebugMsg
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hover enter
+          m_BoolArgument: 0
+        m_CallState: 2
   dataMappedMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &488303371
 GameObject:
@@ -1205,6 +1221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 68472203}
+  - {fileID: 702138043}
   - {fileID: 425206894}
   m_Father: {fileID: 1123492140}
   m_RootOrder: 1
@@ -2442,6 +2459,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1750024024}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &702138041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702138043}
+  - component: {fileID: 702138042}
+  m_Layer: 0
+  m_Name: Interaction Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &702138042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702138041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da63f2da5ef6e774f9ed59b1e7c86193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &702138043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702138041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.35600004, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 488680367}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
