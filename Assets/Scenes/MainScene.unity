@@ -2507,6 +2507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolTipObject: {fileID: 307684952}
   toolTip: {fileID: 307684959}
+  toolTipOffset: {x: 0, y: 0.5, z: 0}
 --- !u!4 &702138043
 Transform:
   m_ObjectHideFlags: 0
@@ -4813,6 +4814,10 @@ PrefabInstance:
     - target: {fileID: 2841423005254224363, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_Positions.Array.data[1].z
       value: 3.269
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540673892375223472, guid: 13e196d07e0440343b954f742a404aff, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13e196d07e0440343b954f742a404aff, type: 3}

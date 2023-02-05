@@ -6,8 +6,11 @@ using Microsoft.MixedReality.Toolkit.UI;
 
 public class BuildingInteractionManager : MonoBehaviour
 {
+    [Header("Tooltip")]
     public GameObject toolTipObject;
     public ToolTip toolTip;
+    public Vector3 toolTipOffset;
+    
 
     private void Start()
     {
@@ -24,9 +27,13 @@ public class BuildingInteractionManager : MonoBehaviour
         {
             toolTipObject.SetActive(true);
             toolTip.ToolTipText = buildingGameObject.name;
-            //toolTip.AnchorPosition = buildingGameObject.transform.position;
-            Vector3 originalPosition = buildingGameObject.GetComponent<BuildingScript>().buildingData.Position;
+            //Vector3 originalPosition = buildingGameObject.GetComponent<BuildingScript>().buildingData.Position;
+            BoxCollider buildingCollider = buildingGameObject.GetComponent<BoxCollider>();
+            Vector3 originalPosition = buildingCollider.bounds.center;
             toolTip.AnchorPosition = originalPosition;
+            toolTip.PivotPosition = new Vector3(buildingCollider.bounds.center.x + toolTipOffset.x,
+                                                buildingCollider.bounds.max.y + toolTipOffset.y,
+                                                buildingCollider.bounds.center.z + toolTipOffset.z);
         }
         else
         {

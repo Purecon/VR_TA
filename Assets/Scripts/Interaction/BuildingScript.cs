@@ -12,7 +12,7 @@ public class BuildingScript : MonoBehaviour
     public struct BuildingData { 
         public string Name; 
         public int ID; 
-        public Vector3 Position;
+        //public Vector3 Position;
     } 
     public BuildingData buildingData;
 
