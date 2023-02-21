@@ -293,9 +293,4 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     {
 
     }
-
-    void TestScript()
-    {
-        Debug.Log("Hi");
-    }
 }

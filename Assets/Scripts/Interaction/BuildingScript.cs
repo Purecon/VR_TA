@@ -28,6 +28,15 @@ public class BuildingScript : MonoBehaviour
         simpleInteractable.hoverEntered = eventForInteraction;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Sphere Collider Trigger Enter");
+        if (other.CompareTag("SphereInteractor"))
+        {
+            BuildingSelected();
+        }
+    }
+
     public void BuildingSelected()
     {
         //Debug.Log("Selected: " + buildingData.Name);
