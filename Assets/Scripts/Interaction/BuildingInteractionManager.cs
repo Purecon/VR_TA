@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Microsoft.MixedReality.Toolkit.UI;
+using TMPro;
+using System.Text;
+using System.IO;
 
 public class BuildingInteractionManager : MonoBehaviour
 {
@@ -10,7 +13,10 @@ public class BuildingInteractionManager : MonoBehaviour
     public GameObject toolTipObject;
     public ToolTip toolTip;
     public Vector3 toolTipOffset;
-    
+
+    [Header("UI")]
+    public TMP_Text codeText;
+    public DataSpaceHandlerExperiment dataSpace;
 
     private void Start()
     {
@@ -39,11 +45,48 @@ public class BuildingInteractionManager : MonoBehaviour
         {
             Debug.LogWarning("No game object reference");
         }
+
+        //TODO: Try Catch
+        //Modified from Merino,2017
+        BuildingScript bldScript = buildingGameObject.GetComponent<BuildingScript>();
+        int bldID = bldScript.buildingData.ID;
+        string classPath = dataSpace.dataSrc[bldID];
+        string m_Path = Application.dataPath;
+        string bldPath = m_Path + "/Data/" + classPath;
+        Debug.Log("Path to class : " + bldPath);
+        codeText.text = "";
+        var fileStream = new FileStream(bldPath, FileMode.Open, FileAccess.Read);
+        using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+        {
+            //int i = 0;
+            string line;
+            bool isComment = false;
+            while ((line = streamReader.ReadLine()) != null /*&& i < 100 */&& codeText.text.Length < 10000)
+            {
+                // i++;
+                bool skip = false;
+                if (line.IndexOf("/*") > -1)
+                {
+                    isComment = true;
+                }
+                if (line.IndexOf("import") > -1 || line.IndexOf("//") > -1 || line.IndexOf("package") > -1 || line.Length == 0)
+                {
+                    skip = true;
+                }
+                if (!isComment && !skip)
+                {
+                    codeText.text += line + "\n";
+                }
+                if (line.IndexOf("*/") > -1)
+                {
+                    isComment = false;
+                }
+            }
+        }
     }
 
 
-
-    public void DebugMsg(GameObject gameObject)
+        public void DebugMsg(GameObject gameObject)
     {
         if (gameObject != null)
         {
