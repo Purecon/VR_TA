@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 28308109}
   - component: {fileID: 28308106}
   - component: {fileID: 28308111}
+  - component: {fileID: 28308112}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: SphereInteractor
@@ -153,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28308104}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6, y: 1.1176, z: 1}
+  m_LocalPosition: {x: -1.8, y: 1.1176, z: 1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 202398643}
@@ -192,7 +193,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 059c50f7baeede14d8416d2ed5732489, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -371,6 +372,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &28308112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28308104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 1, g: 0.24206921, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &68472201
 GameObject:
   m_ObjectHideFlags: 0
@@ -5357,11 +5376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2798037011266357375, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.22224452
+      value: 0.25930104
       objectReference: {fileID: 0}
     - target: {fileID: 2798037011266357375, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.064883865
+      value: 0.07743797
       objectReference: {fileID: 0}
     - target: {fileID: 2798328800047156859, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5453,11 +5472,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2841423005254224363, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: 1.7101858
+      value: 1.6631078
       objectReference: {fileID: 0}
     - target: {fileID: 2841423005254224363, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_Positions.Array.data[1].z
       value: 3.269
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727946499346265964, guid: 13e196d07e0440343b954f742a404aff, type: 3}
+      propertyPath: m_fontSize
+      value: 37.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727946499346265964, guid: 13e196d07e0440343b954f742a404aff, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6540673892375223472, guid: 13e196d07e0440343b954f742a404aff, type: 3}
       propertyPath: m_Mesh
