@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TestInteraction : MonoBehaviour
 {
     string m_Path;
+    public TMP_Text testText;
 
     private void Start()
     {
@@ -12,7 +14,11 @@ public class TestInteraction : MonoBehaviour
         m_Path = Application.dataPath;
 
         //Output the Game data path to the console
-        Debug.Log("dataPath : " + m_Path);
+        string dataText = "dataPath : " + m_Path;
+        Debug.Log(dataText);
+
+        //Test showing datapath
+        testText.text = dataText;
     }
 
     public void DebugMsg(string message)
