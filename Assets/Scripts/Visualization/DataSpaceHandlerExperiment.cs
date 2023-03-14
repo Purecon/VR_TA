@@ -18,6 +18,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     public List<Vector3> dataPositionsC2;
     public List<string> dataClasses;
     public List<string> dataSrc;
+    public List<GameObject> dataClassGameObject;
     public List<Vector3> dataMetrics;
     public List<Color> dataColors;
     public List<Color> dataColorsUnique;
@@ -212,6 +213,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             buildingScript.buildingData = buildingData;
 
             tempObjectsAll.Add(cube);
+            dataClassGameObject.Add(cube);
             count++;
         }
 

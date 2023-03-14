@@ -20,31 +20,72 @@ public class BuildingScript : MonoBehaviour
 
     [Header("Event")]
     public HoverEnterEvent eventForInteraction;
+    public HoverExitEvent eventForExitInteraction;
 
+    [Header("Outline")]
+    public Outline outlineScript;
+    public bool useOutline = true;
 
     private void Start()
     {
         XRSimpleInteractable simpleInteractable = GetComponent<XRSimpleInteractable>();
         simpleInteractable.hoverEntered = eventForInteraction;
+        simpleInteractable.hoverExited = eventForExitInteraction;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Sphere Collider Trigger Enter");
         if (other.CompareTag("SphereInteractor"))
         {
+            Debug.Log("Sphere Collider Trigger Enter");
             BuildingSelected();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SphereInteractor"))
+        {
+            Debug.Log("Sphere Collider Trigger Exit");
+            BuildingDeselected();
         }
     }
 
     public void BuildingSelected()
     {
-        //Debug.Log("Selected: " + buildingData.Name);
         BuildingEvent(gameObject);
+        if (useOutline)
+        {
+            ChangeOutlineOn(true);
+        }
+    }
+
+    public void BuildingDeselected()
+    {
+        BuildingEvent(gameObject);
+        if (useOutline)
+        {
+            ChangeOutlineOn(false);
+        }
     }
 
     public static void BuildingEvent(GameObject gameObject)
     {
         selectedEvent?.Invoke(gameObject);
+    }
+
+    public void ChangeOutlineOn(bool condition)
+    {
+        if(outlineScript != null)
+        {
+            outlineScript.enabled = condition;
+        }
+        else
+        {
+            outlineScript = gameObject.AddComponent<Outline>();
+            outlineScript.enabled = condition;
+        }
+
+        GetComponent<MeshRenderer>().enabled = condition;
     }
 }
