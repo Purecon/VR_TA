@@ -15,6 +15,7 @@ public class BuildingInteractionManager : MonoBehaviour
     public Vector3 toolTipOffset;
 
     [Header("UI")]
+    public GameObject codeGameObject;
     public TMP_Text codeText;
     public DataSpaceHandlerExperiment dataSpace;
 
@@ -25,6 +26,7 @@ public class BuildingInteractionManager : MonoBehaviour
         //Subscribe to event 
         BuildingScript.selectedEvent += BuildingToolTip;
         toolTipObject.SetActive(false);
+        codeGameObject.SetActive(false);
     }
 
     public void BuildingToolTip(GameObject buildingGameObject)
@@ -32,6 +34,7 @@ public class BuildingInteractionManager : MonoBehaviour
         if (buildingGameObject != null)
         {
             toolTipObject.SetActive(true);
+            codeGameObject.SetActive(true);
             toolTip.ToolTipText = buildingGameObject.name;
             //Vector3 originalPosition = buildingGameObject.GetComponent<BuildingScript>().buildingData.Position;
             BoxCollider buildingCollider = buildingGameObject.GetComponent<BoxCollider>();

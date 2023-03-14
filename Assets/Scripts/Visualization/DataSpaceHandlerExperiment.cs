@@ -29,9 +29,6 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     [Header("Size")]
     public Vector3 localScale = new Vector3(1.25f,1.25f,1.25f);
 
-    [Header("Event")]
-    public HoverEnterEvent eventForInteraction;
-
     [SerializeField]
     public Material dataMappedMaterial;
 
