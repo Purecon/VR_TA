@@ -17,6 +17,7 @@ public class BuildingScript : MonoBehaviour
     public BuildingData buildingData;
 
     public static event Action<GameObject> selectedEvent;
+    public static event Action<string> selectedByNameEvent;
 
     [Header("Event")]
     public HoverEnterEvent eventForInteraction;
@@ -72,6 +73,11 @@ public class BuildingScript : MonoBehaviour
     public static void BuildingEvent(GameObject gameObject)
     {
         selectedEvent?.Invoke(gameObject);
+    }
+
+    public static void BuildingEventByName(string name)
+    {
+        selectedByNameEvent?.Invoke(name);
     }
 
     public void ChangeOutlineOn(bool condition)

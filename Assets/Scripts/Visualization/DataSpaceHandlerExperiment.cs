@@ -122,6 +122,9 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         XRSimpleInteractable simpleInteractable = gameObject.AddComponent<XRSimpleInteractable>();
         simpleInteractable.hoverEntered = eventForInteraction;
         */
+
+        //Class list for another way to access
+        ClassListUI.InitiateClassEvent();
     }
 
     //Create a cube with all objects of that type and subdivide if needed

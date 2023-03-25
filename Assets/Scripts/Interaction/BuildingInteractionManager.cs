@@ -19,12 +19,22 @@ public class BuildingInteractionManager : MonoBehaviour
     public TMP_Text codeText;
     public DataSpaceHandlerExperiment dataSpace;
 
-    private void Start()
+    private void OnEnable()
     {
-        //BuildingScript.selectedEvent += DebugMsg;
-
         //Subscribe to event 
         BuildingScript.selectedEvent += BuildingToolTip;
+        BuildingScript.selectedByNameEvent += BuildingTooltipByName;
+    }
+
+    private void OnDisable()
+    {
+        //Unsubscribe to event 
+        BuildingScript.selectedEvent -= BuildingToolTip;
+        BuildingScript.selectedByNameEvent -= BuildingTooltipByName;
+    }
+
+    private void Start()
+    {
         toolTipObject.SetActive(false);
         codeGameObject.SetActive(false);
     }
