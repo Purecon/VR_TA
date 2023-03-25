@@ -95,7 +95,7 @@ public class BuildingInteractionManager : MonoBehaviour
     }
 
 
-        public void DebugMsg(GameObject gameObject)
+    public void DebugMsg(GameObject gameObject)
     {
         if (gameObject != null)
         {
@@ -104,6 +104,20 @@ public class BuildingInteractionManager : MonoBehaviour
         else
         {
             Debug.Log("Work but no message");
+        }
+    }
+
+    public void BuildingTooltipByName(string className)
+    {
+        int classIndex = dataSpace.dataClasses.IndexOf(className);
+        //Check if not found
+        if(classIndex != -1)
+        {
+            BuildingToolTip(dataSpace.dataClassGameObject[classIndex]);
+        }
+        else
+        {
+            Debug.LogWarning("Class not found");
         }
     }
 }
