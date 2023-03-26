@@ -3977,7 +3977,7 @@ MonoBehaviour:
   dataSpace: {fileID: 425206896}
   useSound: 1
   audioSrc: {fileID: 702138044}
-  changeMaterial: 0
+  changeMaterial: 1
   highlightMaterial: {fileID: 2100000, guid: f887096eecf4bc14b8d07cc8888bb55e, type: 2}
 --- !u!4 &702138043
 Transform:

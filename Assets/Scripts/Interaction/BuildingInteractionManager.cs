@@ -144,6 +144,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 mesh.enabled = true;
                 mesh.material = highlightMaterial;
             }
+            dataSpace.ReMergeWithException(building);
             BuildingToolTip(building);
         }
         else

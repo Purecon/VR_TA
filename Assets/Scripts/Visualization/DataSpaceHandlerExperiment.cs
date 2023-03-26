@@ -125,6 +125,9 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
         //Class list for another way to access
         ClassListUI.InitiateClassEvent();
+
+        //Test
+        //ReMergeWithException(dataClassGameObject[0]);
     }
 
     //Create a cube with all objects of that type and subdivide if needed
@@ -288,6 +291,24 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         }
 
         target.mesh.CombineMeshes(combine);
+    }
+
+    public void ReMergeWithException(GameObject buildingCube)
+    {
+        GameObject parentCube = buildingCube.transform.parent.gameObject;
+        List<GameObject> otherCube = new List<GameObject>();
+        foreach (Transform child in parentCube.transform)
+        {
+            if (null == child)
+                continue;
+            GameObject children = child.gameObject;
+            if(children != buildingCube)
+            {
+                otherCube.Add(children);
+            }
+        }
+        MeshFilter filter = parentCube.GetComponent<MeshFilter>();
+        mergeChildren(parentCube, otherCube, filter);
     }
 
     // Update is called once per frame
