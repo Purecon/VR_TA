@@ -19,6 +19,14 @@ public class BuildingInteractionManager : MonoBehaviour
     public TMP_Text codeText;
     public DataSpaceHandlerExperiment dataSpace;
 
+    [Header("Audio")]
+    public bool useSound = false;
+    public AudioSource audioSrc;
+
+    [Header("Material")]
+    public bool changeMaterial = false;
+    public Material highlightMaterial;
+
     private void OnEnable()
     {
         //Subscribe to event 
@@ -102,6 +110,12 @@ public class BuildingInteractionManager : MonoBehaviour
         {
             Debug.LogException(ex);
         }
+
+        //Sound
+        if (useSound)
+        {
+            audioSrc.Play();
+        }
     }
 
 
@@ -123,7 +137,14 @@ public class BuildingInteractionManager : MonoBehaviour
         //Check if not found
         if(classIndex != -1)
         {
-            BuildingToolTip(dataSpace.dataClassGameObject[classIndex]);
+            GameObject building = dataSpace.dataClassGameObject[classIndex];
+            if (changeMaterial)
+            {
+                MeshRenderer mesh = building.GetComponent<MeshRenderer>();
+                mesh.enabled = true;
+                mesh.material = highlightMaterial;
+            }
+            BuildingToolTip(building);
         }
         else
         {
