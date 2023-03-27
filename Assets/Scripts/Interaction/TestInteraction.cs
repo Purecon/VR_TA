@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TestInteraction : MonoBehaviour
 {
+    /*
     public ActionBasedController controller;
     private void Start()
     {
@@ -38,8 +39,8 @@ public class TestInteraction : MonoBehaviour
             Debug.Log("Work but no message");
         }
     }
+    */
 
-    /*
     string m_Path;
     public TMP_Text testText;
 
@@ -55,5 +56,4 @@ public class TestInteraction : MonoBehaviour
         //Test showing datapath
         testText.text = dataText;
     }
-    */
 }

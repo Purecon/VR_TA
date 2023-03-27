@@ -125,9 +125,6 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
         //Class list for another way to access
         ClassListUI.InitiateClassEvent();
-
-        //Test
-        //ReMergeWithException(dataClassGameObject[0]);
     }
 
     //Create a cube with all objects of that type and subdivide if needed

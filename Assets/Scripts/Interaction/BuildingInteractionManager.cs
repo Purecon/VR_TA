@@ -17,6 +17,7 @@ public class BuildingInteractionManager : MonoBehaviour
     [Header("UI")]
     public GameObject codeGameObject;
     public TMP_Text codeText;
+    public TMP_Text tabletCodeText;
     public DataSpaceHandlerExperiment dataSpace;
 
     [Header("Audio")]
@@ -77,6 +78,7 @@ public class BuildingInteractionManager : MonoBehaviour
             string bldPath = m_Path + "/Data/" + classPath;
             Debug.Log("Path to class : " + bldPath);
             codeText.text = "";
+            tabletCodeText.text = "";
             var fileStream = new FileStream(bldPath, FileMode.Open, FileAccess.Read);
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
             {
@@ -98,6 +100,7 @@ public class BuildingInteractionManager : MonoBehaviour
                     if (!isComment && !skip)
                     {
                         codeText.text += line + "\n";
+                        tabletCodeText.text += line + "\n";
                     }
                     if (line.IndexOf("*/") > -1)
                     {
