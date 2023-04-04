@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
+using System;
 
 public class TestInteraction : MonoBehaviour
 {
@@ -47,10 +48,12 @@ public class TestInteraction : MonoBehaviour
     private void Start()
     {
         //Get the path of the Game data folder
-        m_Path = Application.dataPath;
-
+        //m_Path = Application.dataPath;
+        m_Path = Application.persistentDataPath;
+        string rootDir = Application.persistentDataPath.Substring(0, Application.persistentDataPath.IndexOf("Android", StringComparison.Ordinal));
         //Output the Game data path to the console
-        string dataText = "dataPath : " + m_Path;
+        //string dataText = "dataPath : " + m_Path;
+        string dataText = "persistentdataPath : " + rootDir;
         Debug.Log(dataText);
 
         //Test showing datapath

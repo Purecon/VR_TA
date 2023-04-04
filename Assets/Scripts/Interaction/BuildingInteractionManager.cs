@@ -74,8 +74,19 @@ public class BuildingInteractionManager : MonoBehaviour
             BuildingScript bldScript = buildingGameObject.GetComponent<BuildingScript>();
             int bldID = bldScript.buildingData.ID;
             string classPath = dataSpace.dataSrc[bldID];
-            string m_Path = Application.dataPath;
-            string bldPath = m_Path + "/Data/" + classPath;
+            //string m_Path = Application.dataPath;
+            //string bldPath = m_Path + "/Data/" + classPath;
+
+            //PC usage
+            /*
+            string m_Path = "C:/Gamedev/Backup/";
+            string bldPath = m_Path + classPath;
+            */
+            //Oculus usage
+            //string bldPath = "/sdcard/Download/" + classPath;
+            //string bldPath = "/storage/emulated/0/Download/" + classPath;
+            string bldPath = Application.persistentDataPath + "/" + classPath;
+            
             Debug.Log("Path to class : " + bldPath);
             codeText.text = "";
             tabletCodeText.text = "";
@@ -112,6 +123,8 @@ public class BuildingInteractionManager : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogException(ex);
+            codeText.text = "Exception: " + ex.ToString();
+            tabletCodeText.text = "Exception: " + ex.ToString();
         }
 
         //Sound

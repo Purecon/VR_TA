@@ -4497,7 +4497,7 @@ MonoBehaviour:
   codeText: {fileID: 1106354215}
   tabletCodeText: {fileID: 322196097}
   dataSpace: {fileID: 425206896}
-  useSound: 1
+  useSound: 0
   audioSrc: {fileID: 702138044}
   changeMaterial: 1
   highlightMaterial: {fileID: 2100000, guid: f887096eecf4bc14b8d07cc8888bb55e, type: 2}
@@ -6199,7 +6199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -8107,7 +8107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1553870629
 Transform:
   m_ObjectHideFlags: 0
@@ -9333,7 +9333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1918458690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11843,6 +11843,10 @@ PrefabInstance:
     - target: {fileID: 4465373158732510966, guid: 88c04ec8546b7ab4bad2095ceb9eb446, type: 3}
       propertyPath: minScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465373158732510966, guid: 88c04ec8546b7ab4bad2095ceb9eb446, type: 3}
+      propertyPath: minDistance
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4593542294701372010, guid: 88c04ec8546b7ab4bad2095ceb9eb446, type: 3}
       propertyPath: m_AnchorMax.x
