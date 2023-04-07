@@ -9,6 +9,8 @@ using System.IO;
 
 public class BuildingInteractionManager : MonoBehaviour
 {
+    public bool isPC = true;
+
     [Header("Tooltip")]
     public GameObject toolTipObject;
     public ToolTip toolTip;
@@ -78,15 +80,19 @@ public class BuildingInteractionManager : MonoBehaviour
             //string bldPath = m_Path + "/Data/" + classPath;
 
             //PC usage
-            /*
-            string m_Path = "C:/Gamedev/Backup/";
-            string bldPath = m_Path + classPath;
-            */
-            //Oculus usage
-            //string bldPath = "/sdcard/Download/" + classPath;
-            //string bldPath = "/storage/emulated/0/Download/" + classPath;
-            string bldPath = Application.persistentDataPath + "/" + classPath;
-            
+            string bldPath;
+            if (isPC)
+            {
+                string m_Path = "C:/Gamedev/Backup/";
+                bldPath = m_Path + classPath;
+            }
+            else 
+            {
+                //Oculus usage
+                //string bldPath = "/sdcard/Download/" + classPath;
+                //string bldPath = "/storage/emulated/0/Download/" + classPath;
+                bldPath = Application.persistentDataPath + "/" + classPath;
+            }
             Debug.Log("Path to class : " + bldPath);
             codeText.text = "";
             tabletCodeText.text = "";

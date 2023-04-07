@@ -305,7 +305,29 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             }
         }
         MeshFilter filter = parentCube.GetComponent<MeshFilter>();
+        filter.mesh.Clear();
         mergeChildren(parentCube, otherCube, filter);
+
+        CombineInstance[] combine = new CombineInstance[otherCube.Count];
+        for (int i = 0; i < otherCube.Count; i++)
+        {
+            //otherCube[i].transform.parent = parentCube.transform;
+            //otherCube[i].transform.localPosition = new Vector3(0, 0, 0);
+            //otherCube[i].transform.localScale = new Vector3(1, 1, 1);
+            //Set transform
+            otherCube[i].transform.localPosition = new Vector3(0, -0.102f, 0.29f);
+            otherCube[i].transform.localScale = new Vector3(2f, 2f, 2f);
+
+            combine[i].mesh = otherCube[i].GetComponent<MeshFilter>().sharedMesh;
+            combine[i].mesh.colors = otherCube[i].GetComponent<MeshFilter>().mesh.colors;
+            combine[i].transform = otherCube[i].transform.localToWorldMatrix;
+            //objects[i].SetActive(false);
+
+            //Reset transform
+            otherCube[i].transform.localPosition = Vector3.zero;
+            otherCube[i].transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        }
+        filter.mesh.CombineMeshes(combine);
     }
 
     // Update is called once per frame
