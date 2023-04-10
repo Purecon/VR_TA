@@ -165,8 +165,8 @@ public class BuildingInteractionManager : MonoBehaviour
                 MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                 mesh.enabled = true;
                 mesh.material = highlightMaterial;
-            }
-            dataSpace.ReMergeWithException(building);
+            }  
+            //dataSpace.ReMergeWithException(building);
             BuildingToolTip(building);
         }
         else

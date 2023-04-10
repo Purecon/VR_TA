@@ -13,19 +13,40 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     public GameObject buildingPrefab;
 
     [Header("Lists")]
+    //Position
     public List<Vector3> dataPositions;
     public List<Vector3> dataPositionsC1;
     public List<Vector3> dataPositionsC2;
+    //Class name
     public List<string> dataClasses;
+    //Class address
     public List<string> dataSrc;
     public List<GameObject> dataClassGameObject;
+    //Data metrics
     public List<Vector3> dataMetrics;
+    //Colors
     public List<Color> dataColors;
     public List<Color> dataColorsUnique;
+    //Code smells
+    public List<string> linesDataClass;
+    public List<string> linesBrainClass;
+    public List<string> linesGodClass;
 
     [Header("Data")]
     [SerializeField]
     public TextAsset data;
+    //Code smells
+    [SerializeField]
+    public TextAsset listDataClassText;
+    [SerializeField]
+    public TextAsset listBrainClassText;
+    [SerializeField]
+    public TextAsset listGodClassText;
+
+    [Header("Code Smell")]
+    public bool enableDataClass = false;
+    public bool enableBrainClass = false;
+    public bool enableGodClass = false;
 
     [Header("Size")]
     public Vector3 localScale = new Vector3(1.25f,1.25f,1.25f);
@@ -40,6 +61,9 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     {
         //persiapan data split into lines
         string[] lines = data.text.Split('\r');
+
+        //Code smells
+        ReadClassTextInformation();
 
         int count = 0;
 
@@ -103,10 +127,73 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             }
             //mesh.colors = colors;
             //Color list
-            dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
-            //mesh.vertices = newVertices;
+            if (enableGodClass)
+            {
+                bool found = false;
+                foreach(string classItem in linesGodClass)
+                {
+                    if (classItem.Contains(attributes[0]))
+                    {
+                        found = true;
+                    }
+                }
+                if(found)
+                {
+                    Debug.Log("GodClass " + attributes[0]);
+                    dataColors.Add(Color.red);
+                }
+                else
+                {
+                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                }
+            }
+            else if (enableBrainClass)
+            {
+                bool found = false;
+                foreach (string classItem in linesBrainClass)
+                {
+                    if (classItem.Contains(attributes[0]))
+                    {
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    Debug.Log("BrainClass " + attributes[0]);
+                    dataColors.Add(Color.blue);
+                }
+                else
+                {
+                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                }
+            }
+            else if (enableDataClass)
+            {
+                bool found = false;
+                foreach (string classItem in linesDataClass)
+                {
+                    if (classItem.Contains(attributes[0]))
+                    {
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    Debug.Log("DataClass " + attributes[0]);
+                    dataColors.Add(Color.yellow);
+                }
+                else
+                {
+                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                }
+            }
+            else
+            {
+                dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                //mesh.vertices = newVertices;
+                //childCat1.Add(dataPoint);
+            }
             childCat1.Add(dataPoint);
-
             count++;
         }
 
@@ -199,6 +286,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             cube.transform.parent = parent.transform;
             cube.transform.localPosition = new Vector3(0, 0, 0);
             cube.transform.localScale = new Vector3(1, 1, 1);
+            //Debug.Log(cube.transform.position);
 
             //Collider
             BoxCollider boxCollider = cube.AddComponent<BoxCollider>();
@@ -306,17 +394,27 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         }
         MeshFilter filter = parentCube.GetComponent<MeshFilter>();
         filter.mesh.Clear();
-        mergeChildren(parentCube, otherCube, filter);
+        //mergeChildren(parentCube, otherCube, filter);
 
         CombineInstance[] combine = new CombineInstance[otherCube.Count];
         for (int i = 0; i < otherCube.Count; i++)
         {
-            //otherCube[i].transform.parent = parentCube.transform;
-            //otherCube[i].transform.localPosition = new Vector3(0, 0, 0);
-            //otherCube[i].transform.localScale = new Vector3(1, 1, 1);
             //Set transform
-            otherCube[i].transform.localPosition = new Vector3(0, -0.102f, 0.29f);
+            //Note: Offset transform
+            //otherCube[i].transform.localPosition = new Vector3(0, -0.0076f, 0.0224f);
+            //otherCube[i].transform.localPosition = new Vector3(0, -0.102f, 0.29f);
+            //Debug.Log("LocalTransform" + otherCube[i].transform.localPosition);
+            //Debug.Log("Transform" + otherCube[i].transform.position);
+            /*
+            otherCube[i].transform.position = new Vector3(-otherCube[i].transform.position.x,
+                                                          -otherCube[i].transform.position.y,
+                                                          -otherCube[i].transform.position.z);
+            */
+
+            //otherCube[i].transform.localPosition = new Vector3(0, -0.084f, 0.25f);
+            otherCube[i].transform.position = Vector3.zero;
             otherCube[i].transform.localScale = new Vector3(2f, 2f, 2f);
+            
 
             combine[i].mesh = otherCube[i].GetComponent<MeshFilter>().sharedMesh;
             combine[i].mesh.colors = otherCube[i].GetComponent<MeshFilter>().mesh.colors;
@@ -328,6 +426,29 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             otherCube[i].transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         }
         filter.mesh.CombineMeshes(combine);
+    }
+
+    public void Remerge(GameObject parentCube)
+    {
+        List<GameObject> otherCube = new List<GameObject>();
+        foreach (Transform child in parentCube.transform)
+        {
+            if (null == child)
+                continue;
+            GameObject children = child.gameObject;
+            otherCube.Add(children);
+        }
+        MeshFilter filter = parentCube.GetComponent<MeshFilter>();
+        filter.mesh.Clear();
+        mergeChildren(parentCube, otherCube, filter);
+    }
+
+    public void ReadClassTextInformation()
+    {
+        //persiapan data split into lines
+        linesDataClass = new List<string>(listDataClassText.text.Split('\n'));
+        linesBrainClass = new List<string>(listBrainClassText.text.Split('\n'));
+        linesGodClass = new List<string>(listGodClassText.text.Split('\n')); 
     }
 
     // Update is called once per frame
