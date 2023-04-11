@@ -20,6 +20,13 @@ public class BuildingInteractionManager : MonoBehaviour
     public GameObject codeGameObject;
     public TMP_Text codeText;
     public TMP_Text tabletCodeText;
+    //Class Info
+    [Header("Class Info")]
+    public TMP_Text classInfoName;
+    public TMP_Text classInfoLOC;
+    public TMP_Text classInfoNOM;
+    public TMP_Text classInfoNOA;
+
     public DataSpaceHandlerExperiment dataSpace;
 
     [Header("Audio")]
@@ -64,6 +71,18 @@ public class BuildingInteractionManager : MonoBehaviour
             toolTip.PivotPosition = new Vector3(buildingCollider.bounds.center.x + toolTipOffset.x,
                                                 buildingCollider.bounds.max.y + toolTipOffset.y,
                                                 buildingCollider.bounds.center.z + toolTipOffset.z);
+
+            //Class Info
+            BuildingScript bldScript = buildingGameObject.GetComponent<BuildingScript>();
+            int bldID = bldScript.buildingData.ID;
+            
+            //TODO: Class info metrics
+            Vector3 metrics = dataSpace.dataMetrics[bldID];
+
+            classInfoName.text = dataSpace.dataClasses[bldID];
+            classInfoLOC.text = metrics.y.ToString(); 
+            classInfoNOM.text = metrics.z.ToString();
+            classInfoNOA.text = (dataSpace.dataPositions[bldID].y/0.5f).ToString();
         }
         else
         {
@@ -89,7 +108,7 @@ public class BuildingInteractionManager : MonoBehaviour
             else 
             {
                 //Oculus usage
-                //string bldPath = "/sdcard/Download/" + classPath;
+                //bldPath = "/sdcard/Download/" + classPath;
                 //string bldPath = "/storage/emulated/0/Download/" + classPath;
                 bldPath = Application.persistentDataPath + "/" + classPath;
             }
