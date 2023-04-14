@@ -17,15 +17,12 @@ public class BuildingInteractionManager : MonoBehaviour
     public Vector3 toolTipOffset;
 
     [Header("UI")]
-    public GameObject codeGameObject;
-    public TMP_Text codeText;
+    //public TMP_Text codeText;
     public TMP_Text tabletCodeText;
     //Class Info
     [Header("Class Info")]
-    public TMP_Text classInfoName;
-    public TMP_Text classInfoLOC;
-    public TMP_Text classInfoNOM;
-    public TMP_Text classInfoNOA;
+    public GameObject classInfoGameObject;
+    public ClassInfoUI ciScript;
 
     public DataSpaceHandlerExperiment dataSpace;
 
@@ -54,7 +51,7 @@ public class BuildingInteractionManager : MonoBehaviour
     private void Start()
     {
         toolTipObject.SetActive(false);
-        codeGameObject.SetActive(false);
+        classInfoGameObject.SetActive(false);
     }
 
     public void BuildingToolTip(GameObject buildingGameObject)
@@ -62,7 +59,7 @@ public class BuildingInteractionManager : MonoBehaviour
         if (buildingGameObject != null)
         {
             toolTipObject.SetActive(true);
-            codeGameObject.SetActive(true);
+            classInfoGameObject.SetActive(true);
             toolTip.ToolTipText = buildingGameObject.name;
             //Vector3 originalPosition = buildingGameObject.GetComponent<BuildingScript>().buildingData.Position;
             BoxCollider buildingCollider = buildingGameObject.GetComponent<BoxCollider>();
@@ -72,17 +69,17 @@ public class BuildingInteractionManager : MonoBehaviour
                                                 buildingCollider.bounds.max.y + toolTipOffset.y,
                                                 buildingCollider.bounds.center.z + toolTipOffset.z);
 
-            //Class Info
+            //Building ID Info
             BuildingScript bldScript = buildingGameObject.GetComponent<BuildingScript>();
             int bldID = bldScript.buildingData.ID;
-            
-            //TODO: Class info metrics
+
+            //Class info metrics
             Vector3 metrics = dataSpace.dataMetrics[bldID];
 
-            classInfoName.text = dataSpace.dataClasses[bldID];
-            classInfoLOC.text = metrics.y.ToString(); 
-            classInfoNOM.text = metrics.z.ToString();
-            classInfoNOA.text = (dataSpace.dataPositions[bldID].y/0.5f).ToString();
+            ciScript.classInfoName.text = dataSpace.dataClasses[bldID];
+            ciScript.classInfoLOC.text = metrics.y.ToString();
+            ciScript.classInfoNOM.text = metrics.z.ToString();
+            ciScript.classInfoNOA.text = (dataSpace.dataPositions[bldID].y/0.5f).ToString();
         }
         else
         {
@@ -92,6 +89,7 @@ public class BuildingInteractionManager : MonoBehaviour
         //Modified from Merino,2017
         try
         {
+            //Building ID Info
             BuildingScript bldScript = buildingGameObject.GetComponent<BuildingScript>();
             int bldID = bldScript.buildingData.ID;
             string classPath = dataSpace.dataSrc[bldID];
@@ -113,7 +111,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 bldPath = Application.persistentDataPath + "/" + classPath;
             }
             Debug.Log("Path to class : " + bldPath);
-            codeText.text = "";
+            ciScript.codeText.text = "";
             tabletCodeText.text = "";
             var fileStream = new FileStream(bldPath, FileMode.Open, FileAccess.Read);
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
@@ -121,7 +119,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 //int i = 0;
                 string line;
                 bool isComment = false;
-                while ((line = streamReader.ReadLine()) != null /*&& i < 100 */&& codeText.text.Length < 10000)
+                while ((line = streamReader.ReadLine()) != null /*&& i < 100 */&& ciScript.codeText.text.Length < 10000)
                 {
                     // i++;
                     bool skip = false;
@@ -135,7 +133,7 @@ public class BuildingInteractionManager : MonoBehaviour
                     }
                     if (!isComment && !skip)
                     {
-                        codeText.text += line + "\n";
+                        ciScript.codeText.text += line + "\n";
                         tabletCodeText.text += line + "\n";
                     }
                     if (line.IndexOf("*/") > -1)
@@ -148,7 +146,7 @@ public class BuildingInteractionManager : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogException(ex);
-            codeText.text = "Exception: " + ex.ToString();
+            ciScript.codeText.text = "Exception: " + ex.ToString();
             tabletCodeText.text = "Exception: " + ex.ToString();
         }
 
