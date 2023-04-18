@@ -92,6 +92,7 @@ public class BuildingScript : MonoBehaviour
             outlineScript.enabled = condition;
         }
 
-        GetComponent<MeshRenderer>().enabled = condition;
+        //Disable or enable mesh renderer
+        GetComponent<MeshRenderer>().enabled = true;
     }
 }

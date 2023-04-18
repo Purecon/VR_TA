@@ -13,6 +13,8 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     public GameObject buildingPrefab;
 
     [Header("Lists")]
+    //Local scale
+    public List<Vector3> dataLocalScale;
     //Position
     public List<Vector3> dataPositions;
     public List<Vector3> dataPositionsC1;
@@ -28,9 +30,13 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     public List<Color> dataColors;
     public List<Color> dataColorsUnique;
     //Code smells
+    public List<string> linesGodClass;
     public List<string> linesDataClass;
     public List<string> linesBrainClass;
-    public List<string> linesGodClass;
+    public List<GameObject> gameObjectsGodClass;
+    public List<GameObject> gameObjectsDataClass;
+    public List<GameObject> gameObjectsBrainClass;
+    
 
     [Header("Data")]
     [SerializeField]
@@ -93,11 +99,14 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
             dataPoint.transform.localPosition = dataPosition;
 
+            dataLocalScale.Add(dataPoint.transform.localScale);
             //add the data position
             dataPositions.Add(dataPosition);
             dataClasses.Add(attributes[0]);
             dataSrc.Add(attributes[10]);
             dataMetrics.Add(metrics);
+
+            //Debug.Log(attributes[0] + ":" + dataPoint.transform.localScale.ToString()); 
 
             //set vertex color
             Mesh mesh = dataPoint.GetComponent<MeshFilter>().mesh;
@@ -305,6 +314,28 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
 
             tempObjectsAll.Add(cube);
             dataClassGameObject.Add(cube);
+            //Code smell list
+            foreach (string classItem in linesGodClass)
+            {
+                if (classItem.Contains(cube.name))
+                {
+                    gameObjectsGodClass.Add(cube);
+                }
+            }
+            foreach (string classItem in linesDataClass)
+            {
+                if (classItem.Contains(cube.name))
+                {
+                    gameObjectsDataClass.Add(cube);
+                }
+            }
+            foreach (string classItem in linesBrainClass)
+            {
+                if (classItem.Contains(cube.name))
+                {
+                    gameObjectsBrainClass.Add(cube);
+                }
+            }
             count++;
         }
 
