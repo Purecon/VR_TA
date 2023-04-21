@@ -84,16 +84,16 @@ public class BuildingInteractionManager : MonoBehaviour
                 ciScript.classInfoName.text = dataSpace.dataClasses[bldID];
                 /*
                 ciScript.classInfoLOC.text = metrics.y.ToString(); //4 color x
-                ciScript.classInfoNOM.text = metrics.z.ToString(); //7 localscale x
-                ciScript.classInfoNOA.text = metrics.x.ToString(); //1 datapos x
-                ciScript.classInfoNOA.text = (dataSpace.dataPositions[bldID].y / 0.5f).ToString();
+                ciScript.classInfoNOM.text = metrics.x.ToString(); //1 datapos x
+                ciScript.classInfoNOA.text = metrics.z.ToString(); //7 localscale x
                 Line of Code (Color) 
                 Method (Height)
                 Attribute (Width/Depth)
                 */
                 ciScript.classInfoLOC.text = metrics.y.ToString("F3");
-                ciScript.classInfoNOM.text = (dataSpace.dataLocalScale[bldID].y * 1.6f).ToString("F3");
-                ciScript.classInfoNOA.text = (dataSpace.dataLocalScale[bldID].x * 8f).ToString("F3");
+                ciScript.classInfoNOM.text = (dataSpace.dataLocalScale[bldID].y / 0.625f).ToString("F3");
+                ciScript.classInfoNOA.text = (dataSpace.dataLocalScale[bldID].x / 0.125f).ToString("F3");
+                //ciScript.classInfoNOA.text = metrics.z.ToString(); //localscale x           
             }
             else
             {

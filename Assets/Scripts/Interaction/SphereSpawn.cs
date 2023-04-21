@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SphereSpawn : MonoBehaviour
 {
+    //For sphere interaction
     public ActionBasedController leftController;
     public ActionBasedController rightController;
     public Transform leftTransform;
@@ -12,6 +13,7 @@ public class SphereSpawn : MonoBehaviour
     public Transform sphereTransform;
     public bool rightHand;
     public bool leftHand;
+    public Vector3 offset = new Vector3(0,0,1);
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +31,12 @@ public class SphereSpawn : MonoBehaviour
     public void SphereSpawnByActivationLeft(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         Debug.Log("Left Activate is pressed");
-        sphereTransform.position = leftTransform.position;
+        sphereTransform.position = leftTransform.position + offset;
     }
 
     public void SphereSpawnByActivationRight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         Debug.Log("Right Activate is pressed");
-        sphereTransform.position = rightTransform.position;
+        sphereTransform.position = rightTransform.position + offset;
     }
 }
