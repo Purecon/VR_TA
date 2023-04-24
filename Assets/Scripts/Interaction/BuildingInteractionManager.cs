@@ -197,9 +197,8 @@ public class BuildingInteractionManager : MonoBehaviour
                 MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                 mesh.enabled = true;
                 mesh.material = highlightMaterial;
-            }
+            }  
             //dataSpace.ReMergeWithException(building);
-            //dataSpace.Remerge(building);
             BuildingToolTip(building);
         }
         else
@@ -214,13 +213,11 @@ public class BuildingInteractionManager : MonoBehaviour
         {
             case 0:
                 //Data class
-                foreach (GameObject building in dataSpace.gameObjectsDataClass)
+                foreach (GameObject building in dataSpace.gameObjectsGodClass)
                 {
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
-                    mesh.material = highlightMaterial;
                     mesh.material.color = Color.yellow;
-                    //mesh.material.color = Color.cyan;
                 }
                 break;
             case 1:
@@ -229,9 +226,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 {
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
-                    mesh.material = highlightMaterial;
                     mesh.material.color = Color.blue;
-                    //mesh.material.color = Color.white;
                 }
                 break;
             case 2:
@@ -240,7 +235,6 @@ public class BuildingInteractionManager : MonoBehaviour
                 {
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
-                    mesh.material = highlightMaterial;
                     mesh.material.color = Color.red;
                 }
                 break;

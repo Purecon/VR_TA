@@ -436,16 +436,14 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
             //otherCube[i].transform.localPosition = new Vector3(0, -0.102f, 0.29f);
             //Debug.Log("LocalTransform" + otherCube[i].transform.localPosition);
             //Debug.Log("Transform" + otherCube[i].transform.position);
-
             /*
             otherCube[i].transform.position = new Vector3(-otherCube[i].transform.position.x,
                                                           -otherCube[i].transform.position.y,
                                                           -otherCube[i].transform.position.z);
             */
 
-            //int bldId = dataClasses.IndexOf(otherCube[i].name);
-            //otherCube[i].transform.position = -dataPositions[bldId];
             //otherCube[i].transform.localPosition = new Vector3(0, -0.084f, 0.25f);
+            otherCube[i].transform.position = Vector3.zero;
             otherCube[i].transform.localScale = new Vector3(2f, 2f, 2f);
             
 
