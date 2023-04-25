@@ -194,6 +194,7 @@ public class BuildingInteractionManager : MonoBehaviour
             GameObject building = dataSpace.dataClassGameObject[classIndex];
             if (changeMaterial)
             {
+                building.layer = LayerMask.NameToLayer("Highlight");
                 MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                 mesh.enabled = true;
                 mesh.material = highlightMaterial;
@@ -216,6 +217,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 //Data class
                 foreach (GameObject building in dataSpace.gameObjectsDataClass)
                 {
+                    building.layer = LayerMask.NameToLayer("Highlight");
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true; 
                     mesh.material = highlightMaterial;
@@ -227,6 +229,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 //Brain class
                 foreach (GameObject building in dataSpace.gameObjectsBrainClass)
                 {
+                    building.layer = LayerMask.NameToLayer("Highlight");
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
                     mesh.material = highlightMaterial;
@@ -238,6 +241,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 //God class
                 foreach (GameObject building in dataSpace.gameObjectsGodClass)
                 {
+                    building.layer = LayerMask.NameToLayer("Highlight");
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
                     mesh.material = highlightMaterial;
