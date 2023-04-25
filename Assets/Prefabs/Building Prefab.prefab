@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8641055808567396150}
   - component: {fileID: 2204090832660771324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Building Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,3 +77,4 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   outlineScript: {fileID: 0}
+  useOutline: 1

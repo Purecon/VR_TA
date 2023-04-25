@@ -217,7 +217,7 @@ public class BuildingInteractionManager : MonoBehaviour
                 foreach (GameObject building in dataSpace.gameObjectsDataClass)
                 {
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
-                    mesh.enabled = true;
+                    mesh.enabled = true; 
                     mesh.material = highlightMaterial;
                     mesh.material.color = Color.yellow;
                     //mesh.material.color = Color.cyan;

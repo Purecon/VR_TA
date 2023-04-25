@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Highlight
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Highlight
+    uniqueID: 2028513537
     locked: 0

@@ -1,4 +1,4 @@
-Shader "Custom/TestShader"
+Shader "Custom/BuildingTestShader"
 {
     Properties
     {
@@ -9,13 +9,12 @@ Shader "Custom/TestShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="GeometryLast"}
+        Tags { "RenderType"="Opaque" "Queue"="Background"}
         ZWrite On
 
         Pass{    
             //ZTest GEqual
-            ZTest Equal
-            ColorMask 0
+            ZTest Less
         }
 
         CGPROGRAM
