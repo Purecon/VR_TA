@@ -67,6 +67,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     {
         //persiapan data split into lines
         string[] lines = data.text.Split('\r');
+        Debug.Log("Lines length" + lines.Length);
 
         //Code smells
         ReadClassTextInformation();
@@ -79,131 +80,149 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
         {
             //split line 
             string[] attributes = lines[i].Split(',');
-
-            //prepare data point game objects
-            GameObject dataPoint = Instantiate(dataObject);
-            dataPoint.transform.parent = gameObject.transform;
-            dataPoint.transform.localScale = Vector3.Scale(gameObject.transform.localScale, new Vector3(
-                (float.Parse(attributes[7], System.Globalization.CultureInfo.InvariantCulture)) * 0.1f,
-                (float.Parse(attributes[9], System.Globalization.CultureInfo.InvariantCulture)) * 0.5f,
-                (float.Parse(attributes[8], System.Globalization.CultureInfo.InvariantCulture)) * 0.1f));
-            Vector3 dataPosition = new Vector3(//0.0f, 0.0f, 0.0f);
-                (float.Parse(attributes[1], System.Globalization.CultureInfo.InvariantCulture)) * 1.0f,
-                ((float.Parse(attributes[3], System.Globalization.CultureInfo.InvariantCulture)) * 0.8f),//-0.2f
-                (float.Parse(attributes[2], System.Globalization.CultureInfo.InvariantCulture)) * 1.0f);
-
-            Vector3 metrics = new Vector3(
-                (float.Parse(attributes[1], System.Globalization.CultureInfo.InvariantCulture)),
-                (float.Parse(attributes[4], System.Globalization.CultureInfo.InvariantCulture)),
-                (float.Parse(attributes[7], System.Globalization.CultureInfo.InvariantCulture)));
-
-            dataPoint.transform.localPosition = dataPosition;
-
-            dataLocalScale.Add(dataPoint.transform.localScale);
-            //add the data position
-            dataPositions.Add(dataPosition);
-            dataClasses.Add(attributes[0]);
-            dataSrc.Add(attributes[10]);
-            dataMetrics.Add(metrics);
-
-            //Debug.Log(attributes[0] + ":" + dataPoint.transform.localScale.ToString()); 
-
-            //set vertex color
-            Mesh mesh = dataPoint.GetComponent<MeshFilter>().mesh;
-            dataPositionsC1.Add(mesh.bounds.min);
-            dataPositionsC2.Add(mesh.bounds.max);
-            Vector3[] vertices = mesh.vertices;
-            //Vector3[] newVertices = mesh.vertices;
-            // Vector3[] normals = mesh.normals;
-            Color[] colors = new Color[vertices.Length];
-            float colorR = 0;
-            float colorG = 0;
-            float colorB = 0;
-            for (int t = 0; t < vertices.Length; t++)
+            /*
+            Debug.Log(attributes.Length);
+            foreach(string x in attributes)
             {
-                colorR += float.Parse(attributes[4]);
-                colorG += float.Parse(attributes[5]);
-                colorB += float.Parse(attributes[6]);
-
-                /*
-                colors[t] = new Color(float.Parse(attributes[4], System.Globalization.CultureInfo.InvariantCulture),
-                    float.Parse(attributes[5], System.Globalization.CultureInfo.InvariantCulture),
-                    float.Parse(attributes[6], System.Globalization.CultureInfo.InvariantCulture));
-                //Debug.Log(colors[t]);
-                // newVertices[t] += normals[i] * Mathf.Sin(Time.time);
-                //colors[t] = new Color(0.2f, 0.6f, 0.4f);
-                */
+                Debug.Log(x);
             }
-            //mesh.colors = colors;
-            //Color list
-            if (enableGodClass)
+            */
+            if (attributes.Length < 10)
             {
-                bool found = false;
-                foreach(string classItem in linesGodClass)
+                Debug.LogWarning("Problem with attributes length");
+                Debug.Log(attributes.Length);
+                foreach (string x in attributes)
                 {
-                    if (classItem.Contains(attributes[0]))
-                    {
-                        found = true;
-                    }
-                }
-                if(found)
-                {
-                    Debug.Log("GodClass " + attributes[0]);
-                    dataColors.Add(Color.red);
-                }
-                else
-                {
-                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
-                }
-            }
-            else if (enableBrainClass)
-            {
-                bool found = false;
-                foreach (string classItem in linesBrainClass)
-                {
-                    if (classItem.Contains(attributes[0]))
-                    {
-                        found = true;
-                    }
-                }
-                if (found)
-                {
-                    Debug.Log("BrainClass " + attributes[0]);
-                    dataColors.Add(Color.blue);
-                }
-                else
-                {
-                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
-                }
-            }
-            else if (enableDataClass)
-            {
-                bool found = false;
-                foreach (string classItem in linesDataClass)
-                {
-                    if (classItem.Contains(attributes[0]))
-                    {
-                        found = true;
-                    }
-                }
-                if (found)
-                {
-                    Debug.Log("DataClass " + attributes[0]);
-                    dataColors.Add(Color.yellow);
-                }
-                else
-                {
-                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                    Debug.Log(x);
                 }
             }
             else
             {
-                dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
-                //mesh.vertices = newVertices;
-                //childCat1.Add(dataPoint);
+                //prepare data point game objects
+                GameObject dataPoint = Instantiate(dataObject);
+                dataPoint.transform.parent = gameObject.transform;
+                dataPoint.transform.localScale = Vector3.Scale(gameObject.transform.localScale, new Vector3(
+                    (float.Parse(attributes[7], System.Globalization.CultureInfo.InvariantCulture)) * 0.1f,
+                    (float.Parse(attributes[9], System.Globalization.CultureInfo.InvariantCulture)) * 0.5f,
+                    (float.Parse(attributes[8], System.Globalization.CultureInfo.InvariantCulture)) * 0.1f));
+                Vector3 dataPosition = new Vector3(//0.0f, 0.0f, 0.0f);
+                    (float.Parse(attributes[1], System.Globalization.CultureInfo.InvariantCulture)) * 1.0f,
+                    ((float.Parse(attributes[3], System.Globalization.CultureInfo.InvariantCulture)) * 0.8f),//-0.2f
+                    (float.Parse(attributes[2], System.Globalization.CultureInfo.InvariantCulture)) * 1.0f);
+
+                Vector3 metrics = new Vector3(
+                    (float.Parse(attributes[1], System.Globalization.CultureInfo.InvariantCulture)),
+                    (float.Parse(attributes[4], System.Globalization.CultureInfo.InvariantCulture)),
+                    (float.Parse(attributes[7], System.Globalization.CultureInfo.InvariantCulture)));
+
+                dataPoint.transform.localPosition = dataPosition;
+
+                dataLocalScale.Add(dataPoint.transform.localScale);
+                //add the data position
+                dataPositions.Add(dataPosition);
+                dataClasses.Add(attributes[0]);
+                dataSrc.Add(attributes[10]);
+                dataMetrics.Add(metrics);
+
+                //Debug.Log(attributes[0] + ":" + dataPoint.transform.localScale.ToString()); 
+
+                //set vertex color
+                Mesh mesh = dataPoint.GetComponent<MeshFilter>().mesh;
+                dataPositionsC1.Add(mesh.bounds.min);
+                dataPositionsC2.Add(mesh.bounds.max);
+                Vector3[] vertices = mesh.vertices;
+                //Vector3[] newVertices = mesh.vertices;
+                // Vector3[] normals = mesh.normals;
+                Color[] colors = new Color[vertices.Length];
+                float colorR = 0;
+                float colorG = 0;
+                float colorB = 0;
+                for (int t = 0; t < vertices.Length; t++)
+                {
+                    colorR += float.Parse(attributes[4]);
+                    colorG += float.Parse(attributes[5]);
+                    colorB += float.Parse(attributes[6]);
+
+                    /*
+                    colors[t] = new Color(float.Parse(attributes[4], System.Globalization.CultureInfo.InvariantCulture),
+                        float.Parse(attributes[5], System.Globalization.CultureInfo.InvariantCulture),
+                        float.Parse(attributes[6], System.Globalization.CultureInfo.InvariantCulture));
+                    //Debug.Log(colors[t]);
+                    // newVertices[t] += normals[i] * Mathf.Sin(Time.time);
+                    //colors[t] = new Color(0.2f, 0.6f, 0.4f);
+                    */
+                }
+                //mesh.colors = colors;
+                //Color list
+                if (enableGodClass)
+                {
+                    bool found = false;
+                    foreach (string classItem in linesGodClass)
+                    {
+                        if (classItem.Contains(attributes[0]))
+                        {
+                            found = true;
+                        }
+                    }
+                    if (found)
+                    {
+                        Debug.Log("GodClass " + attributes[0]);
+                        dataColors.Add(Color.red);
+                    }
+                    else
+                    {
+                        dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                    }
+                }
+                else if (enableBrainClass)
+                {
+                    bool found = false;
+                    foreach (string classItem in linesBrainClass)
+                    {
+                        if (classItem.Contains(attributes[0]))
+                        {
+                            found = true;
+                        }
+                    }
+                    if (found)
+                    {
+                        Debug.Log("BrainClass " + attributes[0]);
+                        dataColors.Add(Color.blue);
+                    }
+                    else
+                    {
+                        dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                    }
+                }
+                else if (enableDataClass)
+                {
+                    bool found = false;
+                    foreach (string classItem in linesDataClass)
+                    {
+                        if (classItem.Contains(attributes[0]))
+                        {
+                            found = true;
+                        }
+                    }
+                    if (found)
+                    {
+                        Debug.Log("DataClass " + attributes[0]);
+                        dataColors.Add(Color.yellow);
+                    }
+                    else
+                    {
+                        dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                    }
+                }
+                else
+                {
+                    dataColors.Add(new Color(colorR / vertices.Length, colorG / vertices.Length, colorB / vertices.Length));
+                    //mesh.vertices = newVertices;
+                    //childCat1.Add(dataPoint);
+                }
+                childCat1.Add(dataPoint);
+                count++;
             }
-            childCat1.Add(dataPoint);
-            count++;
         }
 
         //Unique color
