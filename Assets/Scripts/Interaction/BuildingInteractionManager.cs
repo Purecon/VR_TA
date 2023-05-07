@@ -217,37 +217,67 @@ public class BuildingInteractionManager : MonoBehaviour
                 //Data class
                 foreach (GameObject building in dataSpace.gameObjectsDataClass)
                 {
+                    /*
                     building.layer = LayerMask.NameToLayer("Highlight");
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true; 
                     mesh.material = highlightMaterial;
                     mesh.material.color = Color.yellow;
                     //mesh.material.color = Color.cyan;
+                    */
+                    ChangeColor(building, Color.yellow);
                 }
                 break;
             case 1:
                 //Brain class
                 foreach (GameObject building in dataSpace.gameObjectsBrainClass)
                 {
+                    /*
                     building.layer = LayerMask.NameToLayer("Highlight");
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
                     mesh.material = highlightMaterial;
                     mesh.material.color = Color.blue;
                     //mesh.material.color = Color.white;
+                    */
+                    ChangeColor(building, Color.blue);
                 }
                 break;
             case 2:
                 //God class
                 foreach (GameObject building in dataSpace.gameObjectsGodClass)
                 {
+                    /*
                     building.layer = LayerMask.NameToLayer("Highlight");
                     MeshRenderer mesh = building.GetComponent<MeshRenderer>();
                     mesh.enabled = true;
                     mesh.material = highlightMaterial;
                     mesh.material.color = Color.red;
+                    */
+                    ChangeColor(building, Color.red);
                 }
                 break;
+        }
+    }
+
+    public void ChangeColor(GameObject building, Color colorChange)
+    {
+        building.layer = LayerMask.NameToLayer("Highlight");
+        MeshRenderer mesh = building.GetComponent<MeshRenderer>();
+        mesh.enabled = true;
+        mesh.material = highlightMaterial;
+        mesh.material.color = colorChange;
+        
+        //Enable individual mesh renderer
+        GameObject parent = building.gameObject.transform.parent.gameObject;
+        parent.GetComponent<MeshRenderer>().enabled = false;
+        foreach (Transform child in parent.transform)
+        {
+            if (null == child)
+                continue;
+            GameObject children = child.gameObject;
+            MeshRenderer childMesh = children.GetComponent<MeshRenderer>();
+            childMesh.enabled = true;
         }
     }
 
