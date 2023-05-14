@@ -5265,7 +5265,7 @@ MonoBehaviour:
   gameObjectsGodClass: []
   gameObjectsDataClass: []
   gameObjectsBrainClass: []
-  data: {fileID: 4900000, guid: 882bad982c03b974fb87a8b46680dfd1, type: 3}
+  data: {fileID: 4900000, guid: dd8b173ac5cc6934486fa9a0b79edda9, type: 3}
   listDataClassText: {fileID: 4900000, guid: 3e9c33172b0fc9b4bbe230bfa3b4eb46, type: 3}
   listBrainClassText: {fileID: 4900000, guid: c8373fc8261d0c24fafdddec822c763e, type: 3}
   listGodClassText: {fileID: 4900000, guid: ed2568d2f8297254bb7520102f69b8fd, type: 3}
