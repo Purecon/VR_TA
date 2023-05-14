@@ -120,8 +120,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                 dataLocalScale.Add(dataPoint.transform.localScale);
                 //add the data position
                 dataPositions.Add(dataPosition);
-                string classNameVar = attributes[0];
-                dataClasses.Add(classNameVar);
+                dataClasses.Add(attributes[0]);
                 dataSrc.Add(attributes[10]);
                 dataMetrics.Add(metrics);
 
@@ -160,14 +159,14 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                     bool found = false;
                     foreach (string classItem in linesGodClass)
                     {
-                        if (classItem.Contains(classNameVar))
+                        if (classItem.Contains(attributes[0]))
                         {
                             found = true;
                         }
                     }
                     if (found)
                     {
-                        Debug.Log("GodClass " + classNameVar);
+                        Debug.Log("GodClass " + attributes[0]);
                         dataColors.Add(Color.red);
                     }
                     else
@@ -180,14 +179,14 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                     bool found = false;
                     foreach (string classItem in linesBrainClass)
                     {
-                        if (classItem.Contains(classNameVar))
+                        if (classItem.Contains(attributes[0]))
                         {
                             found = true;
                         }
                     }
                     if (found)
                     {
-                        Debug.Log("BrainClass " + classNameVar);
+                        Debug.Log("BrainClass " + attributes[0]);
                         dataColors.Add(Color.blue);
                     }
                     else
@@ -200,14 +199,14 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                     bool found = false;
                     foreach (string classItem in linesDataClass)
                     {
-                        if (classItem.Contains(classNameVar))
+                        if (classItem.Contains(attributes[0]))
                         {
                             found = true;
                         }
                     }
                     if (found)
                     {
-                        Debug.Log("DataClass " + classNameVar);
+                        Debug.Log("DataClass " + attributes[0]);
                         dataColors.Add(Color.yellow);
                     }
                     else
