@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using System.Linq;
 public class ClassListUI : MonoBehaviour
 {
     [Header("UI")]
@@ -34,7 +34,8 @@ public class ClassListUI : MonoBehaviour
 
     private void InitiateClassList()
     {
-        List<string> dataClassList = dataSpace.dataClasses;
+        List<string> dataClassList = new List<string>(dataSpace.dataClasses);
+        dataClassList.Sort();
         //List<GameObject> dataClassGameobjectList = dataSpace.dataClassGameObject;
 
         //Create a list of class

@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using System.Text.RegularExpressions;
 
 [System.Serializable]
 public struct ConfigurationData
@@ -71,6 +72,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     public bool enableDataClass = false;
     public bool enableBrainClass = false;
     public bool enableGodClass = false;
+    Regex sWhiteSpace = new Regex(@"\s+");
 
     [Header("Size")]
     public Vector3 localScale = new Vector3(1.25f,1.25f,1.25f);
@@ -153,7 +155,9 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                 dataLocalScale.Add(dataPoint.transform.localScale);
                 //add the data position
                 dataPositions.Add(dataPosition);
-                string classNameVar = attributes[0].Replace(" ", "");
+                //string classNameVar = attributes[0].Replace(" ", "");
+                string classNameVar = sWhiteSpace.Replace(attributes[0], "");
+
                 dataClasses.Add(classNameVar);
                 dataSrc.Add(attributes[10]);
                 dataMetrics.Add(metrics);
