@@ -37,6 +37,11 @@ public class BuildingInteractionManager : MonoBehaviour
     public bool changeMaterial = false;
     public Material highlightMaterial;
 
+    [Header("Code Smell")]
+    public bool isDataClassActive = false;
+    public bool isBrainClassActive = false;
+    public bool isGodClassActive = false;
+
     private void OnEnable()
     {
         //Subscribe to event 
@@ -225,8 +230,17 @@ public class BuildingInteractionManager : MonoBehaviour
                     mesh.material.color = Color.yellow;
                     //mesh.material.color = Color.cyan;
                     */
-                    ChangeColor(building, Color.yellow);
+                    if (!isDataClassActive)
+                    {
+                        ChangeColor(building, Color.yellow);
+                    }
+                    else
+                    {
+                        RevertChangeColor(building);
+                    }
                 }
+                isDataClassActive = !isDataClassActive;
+                Debug.Log("Data class is " + isDataClassActive);
                 break;
             case 1:
                 //Brain class
@@ -240,8 +254,17 @@ public class BuildingInteractionManager : MonoBehaviour
                     mesh.material.color = Color.blue;
                     //mesh.material.color = Color.white;
                     */
-                    ChangeColor(building, Color.blue);
+                    if (!isBrainClassActive)
+                    {
+                        ChangeColor(building, Color.blue);
+                    }
+                    else
+                    {
+                        RevertChangeColor(building);
+                    }
                 }
+                isBrainClassActive = !isBrainClassActive;
+                Debug.Log("Brain class is " + isBrainClassActive);
                 break;
             case 2:
                 //God class
@@ -254,8 +277,17 @@ public class BuildingInteractionManager : MonoBehaviour
                     mesh.material = highlightMaterial;
                     mesh.material.color = Color.red;
                     */
-                    ChangeColor(building, Color.red);
+                    if (!isGodClassActive)
+                    {
+                        ChangeColor(building, Color.red);
+                    }
+                    else
+                    {
+                        RevertChangeColor(building);
+                    }
                 }
+                isGodClassActive = !isGodClassActive;
+                Debug.Log("God class is " + isGodClassActive);
                 break;
         }
     }
@@ -278,6 +310,27 @@ public class BuildingInteractionManager : MonoBehaviour
             GameObject children = child.gameObject;
             MeshRenderer childMesh = children.GetComponent<MeshRenderer>();
             childMesh.enabled = true;
+        }
+    }
+
+    public void RevertChangeColor(GameObject building)
+    {
+        MeshRenderer mesh = building.GetComponent<MeshRenderer>();
+        mesh.enabled = false;
+
+        //Enable individual mesh renderer
+        GameObject parent = building.gameObject.transform.parent.gameObject;
+        MeshRenderer parentMesh = parent.GetComponent<MeshRenderer>();
+        parentMesh.enabled = true;
+        mesh.material = parentMesh.material;
+        mesh.material.color = parentMesh.material.color;
+        foreach (Transform child in parent.transform)
+        {
+            if (null == child)
+                continue;
+            GameObject children = child.gameObject;
+            MeshRenderer childMesh = children.GetComponent<MeshRenderer>();
+            childMesh.enabled = false;
         }
     }
 
