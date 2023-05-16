@@ -5273,6 +5273,23 @@ MonoBehaviour:
   listDataClassText: {fileID: 4900000, guid: 3e9c33172b0fc9b4bbe230bfa3b4eb46, type: 3}
   listBrainClassText: {fileID: 4900000, guid: c8373fc8261d0c24fafdddec822c763e, type: 3}
   listGodClassText: {fileID: 4900000, guid: ed2568d2f8297254bb7520102f69b8fd, type: 3}
+  configurationDatas:
+  - data: {fileID: 4900000, guid: fd1368006adde5448a6a7b2a0ed6285e, type: 3}
+    listDataClassText: {fileID: 4900000, guid: 8179722830679d14bb982e22b388ff5e, type: 3}
+    listBrainClassText: {fileID: 4900000, guid: 448968207e3b6e0478b34351c36039fa, type: 3}
+    listGodClassText: {fileID: 4900000, guid: 3812a81cbaae84b47a814cc43adb5db5, type: 3}
+  - data: {fileID: 4900000, guid: 04fb08fbc6239ae4980553d1a0315469, type: 3}
+    listDataClassText: {fileID: 4900000, guid: 64288bc30dd63a1438c39eb47e30f082, type: 3}
+    listBrainClassText: {fileID: 4900000, guid: 3aab21f1f3164b641857a391faceba6e, type: 3}
+    listGodClassText: {fileID: 4900000, guid: 158b2df1ce68af44faebc2015fa69528, type: 3}
+  - data: {fileID: 4900000, guid: 5259132cfcd66054c842d0fedd2347cf, type: 3}
+    listDataClassText: {fileID: 4900000, guid: 056f3160b961c214e9f95ad7a25554b9, type: 3}
+    listBrainClassText: {fileID: 4900000, guid: b3f809ba6fce77d4c8eaf576e6d9ed6c, type: 3}
+    listGodClassText: {fileID: 4900000, guid: 8756d4f9ddb17cc4088bff015bb1db96, type: 3}
+  - data: {fileID: 4900000, guid: 353d61260877a71459b44a26798ca62e, type: 3}
+    listDataClassText: {fileID: 4900000, guid: cbb67f34b3d498f4e82c0aa4a25364e7, type: 3}
+    listBrainClassText: {fileID: 4900000, guid: 6a7f08e2734b1784f94e2eea372a535a, type: 3}
+    listGodClassText: {fileID: 4900000, guid: 132008c1f90469d408c95e62d166119a, type: 3}
   enableDataClass: 0
   enableBrainClass: 0
   enableGodClass: 0
@@ -6732,6 +6749,7 @@ MonoBehaviour:
   listDataClassText: {fileID: 4900000, guid: 3e9c33172b0fc9b4bbe230bfa3b4eb46, type: 3}
   listBrainClassText: {fileID: 4900000, guid: c8373fc8261d0c24fafdddec822c763e, type: 3}
   listGodClassText: {fileID: 4900000, guid: ed2568d2f8297254bb7520102f69b8fd, type: 3}
+  configurationDatas: []
   enableDataClass: 0
   enableBrainClass: 0
   enableGodClass: 0
@@ -9276,6 +9294,9 @@ MonoBehaviour:
   audioSrc: {fileID: 702138044}
   changeMaterial: 1
   highlightMaterial: {fileID: 2100000, guid: f887096eecf4bc14b8d07cc8888bb55e, type: 2}
+  isDataClassActive: 0
+  isBrainClassActive: 0
+  isGodClassActive: 0
 --- !u!4 &702138043
 Transform:
   m_ObjectHideFlags: 0
@@ -18748,11 +18769,26 @@ MonoBehaviour:
   classInfoContent: {fileID: 718122280}
   codeViewerContent: {fileID: 90368459}
   backButton: {fileID: 1678622447}
+  lockSelection: 1
   codeText: {fileID: 353109136}
   classInfoName: {fileID: 1470805963}
   classInfoLOC: {fileID: 464470559}
   classInfoNOM: {fileID: 1118830429}
   classInfoNOA: {fileID: 1940476136}
+  lockIcon: {fileID: 0}
+  lockSprite: {fileID: 0}
+  unlockSprite: {fileID: 0}
+  lockText: {fileID: 0}
+  dataClassIcon: {fileID: 0}
+  brainClassIcon: {fileID: 0}
+  godClassIcon: {fileID: 0}
+  greyBoxDefault: {fileID: 0}
+  yellowCheckBox: {fileID: 0}
+  blueCheckBox: {fileID: 0}
+  redCheckBox: {fileID: 0}
+  isDataClassActive: 0
+  isBrainClassActive: 0
+  isGodClassActive: 0
 --- !u!1 &1696709517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3148016074151844281, guid: 88c04ec8546b7ab4bad2095ceb9eb446, type: 3}

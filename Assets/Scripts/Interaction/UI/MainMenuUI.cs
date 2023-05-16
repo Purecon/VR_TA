@@ -20,6 +20,18 @@ public class MainMenuUI : MonoBehaviour
         }
     }
 
+    public void LoadSceneStatic()
+    {
+        if (DataConfigurationStatic.currentInteractionSelectionID == 0)
+        {
+            LoadScene(oldIntScene);
+        }
+        else if (DataConfigurationStatic.currentInteractionSelectionID == 1)
+        {
+            LoadScene(newIntScene);
+        }
+    }
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

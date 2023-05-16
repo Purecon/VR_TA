@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,21 @@ using System.Linq;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+
+[System.Serializable]
+public struct ConfigurationData
+{
+    //Visualization data
+    [SerializeField]
+    public TextAsset data;
+    //Code smells
+    [SerializeField]
+    public TextAsset listDataClassText;
+    [SerializeField]
+    public TextAsset listBrainClassText;
+    [SerializeField]
+    public TextAsset listGodClassText;
+}
 
 public class DataSpaceHandlerExperiment : MonoBehaviour
 {
@@ -48,6 +64,8 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     public TextAsset listBrainClassText;
     [SerializeField]
     public TextAsset listGodClassText;
+    [SerializeField]
+    public List<ConfigurationData> configurationDatas;
 
     [Header("Code Smell")]
     public bool enableDataClass = false;
@@ -65,6 +83,21 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Data berdasarkan konfigurasi
+        int confIdx = DataConfigurationStatic.currentDataSelectionID;
+        try
+        {
+            ConfigurationData currConf = configurationDatas[confIdx];
+            data = currConf.data;
+            listDataClassText = currConf.listDataClassText;
+            listBrainClassText = currConf.listBrainClassText;
+            listGodClassText = currConf.listGodClassText;
+        }
+        catch(Exception ex)
+        {
+            Debug.LogException(ex);
+        }
+
         //persiapan data split into lines
         string[] lines = data.text.Split('\r');
         Debug.Log("Lines length" + lines.Length);
@@ -120,7 +153,7 @@ public class DataSpaceHandlerExperiment : MonoBehaviour
                 dataLocalScale.Add(dataPoint.transform.localScale);
                 //add the data position
                 dataPositions.Add(dataPosition);
-                string classNameVar = attributes[0];
+                string classNameVar = attributes[0].Replace(" ", "");
                 dataClasses.Add(classNameVar);
                 dataSrc.Add(attributes[10]);
                 dataMetrics.Add(metrics);
