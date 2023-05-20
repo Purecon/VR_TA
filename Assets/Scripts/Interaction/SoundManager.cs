@@ -64,18 +64,21 @@ public class SoundManager : MonoBehaviour
 
     public void Play(string name)
     {
-        Debug.Log("Play "+name);
-        Sound sound = Array.Find(sounds, s => s.name == name);
-
-        if (sound == null)
+        if (useSound)
         {
-            Debug.LogError("Sound " + name + " Not Found!");
-            return;
+            //Debug.Log("Play " + name);
+            Sound sound = Array.Find(sounds, s => s.name == name);
+
+            if (sound == null)
+            {
+                Debug.LogError("Sound " + name + " Not Found!");
+                return;
+            }
+
+            if (!CanPlaySound(sound)) { Debug.Log("Can't play " + name); return; }
+
+            sound.source.Play();
         }
-
-        if (!CanPlaySound(sound)) { Debug.Log("Can't play " + name); return; }
-
-        sound.source.Play();
     }
 
     public void Stop(string name)

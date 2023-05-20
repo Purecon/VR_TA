@@ -58,4 +58,11 @@ MonoBehaviour:
     isLoop: 0
     hasCooldown: 0
     source: {fileID: 0}
-  useSound: 0
+  - name: Lock
+    clip: {fileID: 8300000, guid: 9e9e6c56e8ac19946a4987f02b0117d5, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+    hasCooldown: 0
+    source: {fileID: 0}
+  useSound: 1

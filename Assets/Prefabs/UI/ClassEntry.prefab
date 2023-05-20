@@ -187,6 +187,18 @@ MonoBehaviour:
           m_StringArgument: GeneratorCpp
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1052395143667279652, guid: 28d8ff95f67f71d4a9b96272f05df39a, type: 3}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayByNameEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ClickButton
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5790814142998224702
 GameObject:
   m_ObjectHideFlags: 0
