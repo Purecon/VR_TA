@@ -29,9 +29,11 @@ public class BuildingInteractionManager : MonoBehaviour
 
     public DataSpaceHandlerExperiment dataSpace;
 
+    /*
     [Header("Audio")]
     public bool useSound = false;
     public AudioSource audioSrc;
+    */
 
     [Header("Material")]
     public bool changeMaterial = false;
@@ -170,10 +172,13 @@ public class BuildingInteractionManager : MonoBehaviour
             }
 
             //Sound
+            /*
             if (useSound)
             {
                 audioSrc.Play();
             }
+            */
+            SoundManager.instance.Play("ClickPrimary");
         }
     }
 
