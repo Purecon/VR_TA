@@ -5726,7 +5726,7 @@ MonoBehaviour:
   listBrainClassText: {fileID: 4900000, guid: c8373fc8261d0c24fafdddec822c763e, type: 3}
   listGodClassText: {fileID: 4900000, guid: ed2568d2f8297254bb7520102f69b8fd, type: 3}
   configurationDatas:
-  - data: {fileID: 4900000, guid: f2752e86653b6ca45b42a832a265b6d8, type: 3}
+  - data: {fileID: 4900000, guid: fd1368006adde5448a6a7b2a0ed6285e, type: 3}
     listDataClassText: {fileID: 4900000, guid: 8179722830679d14bb982e22b388ff5e, type: 3}
     listBrainClassText: {fileID: 4900000, guid: 448968207e3b6e0478b34351c36039fa, type: 3}
     listGodClassText: {fileID: 4900000, guid: 3812a81cbaae84b47a814cc43adb5db5, type: 3}
@@ -5742,6 +5742,10 @@ MonoBehaviour:
     listDataClassText: {fileID: 4900000, guid: cbb67f34b3d498f4e82c0aa4a25364e7, type: 3}
     listBrainClassText: {fileID: 4900000, guid: 6a7f08e2734b1784f94e2eea372a535a, type: 3}
     listGodClassText: {fileID: 4900000, guid: 132008c1f90469d408c95e62d166119a, type: 3}
+  - data: {fileID: 4900000, guid: f2752e86653b6ca45b42a832a265b6d8, type: 3}
+    listDataClassText: {fileID: 4900000, guid: 8179722830679d14bb982e22b388ff5e, type: 3}
+    listBrainClassText: {fileID: 4900000, guid: 448968207e3b6e0478b34351c36039fa, type: 3}
+    listGodClassText: {fileID: 4900000, guid: 3812a81cbaae84b47a814cc43adb5db5, type: 3}
   enableDataClass: 0
   enableBrainClass: 0
   enableGodClass: 0
